@@ -86,21 +86,17 @@ class Bowling():
 #accepts the position of the first number in the 10th frame 
 #returns the points you recieve with the 10th frame
     def bonus(self, position):
-        
         if self.throws[position] == "X":
             bPts = int(self.next(position)) + int(self.next(position + 1)) + 10
 
         elif self.throws[position+1] == "/":
             extra = self.throws[position+2]
-
             if extra == "X":
                 extra = 10
-
             bPts = 10 + int(extra)
 
         else:
             bPts = int(self.throws[position]) + int(self.throws[position+1])
-
 
         return bPts
    
