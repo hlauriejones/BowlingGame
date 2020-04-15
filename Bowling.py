@@ -17,7 +17,13 @@ class Bowling():
         
 
     def findTotal(self):
+        print(self.throws)
         num = 0
+        first = 0
+        two = 0
+        before = 0
+        after = 0
+        one = 0
 
         for i in range(len(self.throws)):
 
@@ -25,7 +31,6 @@ class Bowling():
                 self.total = self.total + 0
 
             elif self.throws[i] == "/":
-
                 #adds up to 10
                 prev = i - 1
                 first = self.throws[prev]
@@ -39,7 +44,17 @@ class Bowling():
 
             elif self.throws[i] == "X":
                 self.total = self.total + 10
-                num = int(self.next(i)) #+ int(self.ex(i+2))
+
+                before = i
+                #bc you need to account for the number you are on,
+                #the dash, the next number and then finally you get 
+                #to the number you want
+                after = i + 2
+
+                #this gets the next number
+                one =  int(self.next(i))
+                two = self.next(i+2)
+                num = one + int(two)
                 print("num",num)
                 self.total = self.total + int(num)
                 
@@ -54,9 +69,11 @@ class Bowling():
         return print(self.total)
 
 
-    #accepts the position of X 
+    #accepts the position of the number you want to find the next of 
     def next(self, position):
         number = 0 
+        first = 0
+        prev = 0
 
         #skips to next number  
         position = position + 1
@@ -66,16 +83,17 @@ class Bowling():
 
         if self.throws[position] == "/":
             prev = position -1
+            print("prev", prev)
 
-            first = self.throws[prev]
+            first = self.throws[position-1]
             print("first", first)
 
-
-            adder = 10 - first
+            adder = 10 - int(first)
             number = adder
+            
 
 
-        if self.throws[position] == "X":
+        elif self.throws[position] == "X":
             number = 10
 
         else: 
@@ -109,10 +127,10 @@ class Bowling():
 
 def main():
     #throws = input("Enter your throws for your game: ")
-    throws = "23-5/-44"
+    throws = "X-X-5/-44-X-27"
     b = Bowling(throws)
     b.findTotal()
-    print("should be 27 ")
+    print("should be 75 ")
 
 
 if __name__ == "__main__":
