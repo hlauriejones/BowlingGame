@@ -17,7 +17,8 @@ class Bowling():
         self.throws = throws
         self.total = 0
         
-
+ 
+#returns the total poiints you aquire in a full game of bowling
     def findTotal(self):
         frame = 0
 
